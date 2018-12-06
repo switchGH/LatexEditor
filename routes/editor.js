@@ -15,9 +15,12 @@ router.post('/', (req, res, next) => {
   for (var i = 0; i < arr.length; i++){
     //console.log(arr[i]);
     arr[i] = arr[i].replace(/\\\\/g, '\\');
-    fs.appendFileSync('sample.tex', arr[i] + '\n', function (err) {
+    fs.appendFileSync('./texFile/sample.tex', arr[i] + '\n', function (err) {
       console.log(err);
     });
+  }
+  if (!fs.existsSync('./texFile')) {
+    fs.mkdirSync('./texFile');
   }
   res.send(jsonData);
 });
