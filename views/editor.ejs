@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <h1><%= title %></h1>
+  <div class="btn-group">
+    <button id="save" class="btn btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
+    <dvu class="btn-group">
+      <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">構文<span class="caret"></span></button> 
+      <ul class="dropdown-menu" id="koubun">
+        <button id="table-of-contents" class="btn btn-default">目次あり</button>
+      </ul>
+    </dvu>
+    <div class="btn-group">
+      <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">見出し<span class="caret"></span></button>
+      <ul class="dropdown-menu" id="midashi">
+      <button id="section" class="btn btn-default">\section</button>
+      <button id="subsection" class="btn btn-default">\subsection</button>
+      <button id="subsubsection" class="btn btn-default">\subsubsection</button>
+      </ul>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">箇条<span class="caret"></span></button>
+      <ul class="dropdown-menu" id="kajyo">
+        <button id="itemize" class="btn btn-default">記号付き</button>
+        <button id="enumerate" class="btn btn-default">番号付き</button>
+        <button id="description" class="btn btn-default">見出し付き</button>
+      </ul>
+    </div>
+  </div>
+  <div id="editor" style="height: 600px"></div>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+  <script>
+    var editor = ace.edit("editor");
+    editor.$blockScrolling = Infinity;
+    editor.setOptions({
+      enableEmmet: true
+    });
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/html");
+    $('#save').click(function(e) {
+      //alert(editor.getValue());
+      $.ajax({
+        url: 'http://localhost:3000/editor',
+        type: 'post',
+        data: {'msg': editor.getValue()},
+        dataType: 'json'
+      });
+    });
+    $('#table-of-contents').click(function(e){
+      editor.insert(
+        '\\documentclass{jsarticle}\n' +
+        '\\usepackage[dvipdfmx]{graphicx}\n' +
+        '\\setlength{\\textheight}{24cm}\n' +
+        '\\setlength{\\topmargin}{-1.5cm}\n' +
+        '\\setlength{\\textwidth}{17cm}\n' +
+        '\\setlength{\\oddsidemargin}{-.5cm}\n' +
+        '\\usepackage{here}\n' +
+        '\n' +
+        '\n' +
+        '\\title{タイトル}\n' +
+        '\\author{名前} % 氏名（学番号）\n' +
+        'date{○年○月○日（○）} % 提出期限' +
+        '\n' +
+        '\\begin{document}\n' +
+        '\\maketitle\n' +
+        '\n' +
+        '\\tableofcontents\n' +
+        '\n' +
+        '\\section{はじめに}\n' +
+        '\n' +
+        '\\end{document}\n'
+      );
+    });
+    $('#section').click(function(e){
+      editor.insert('\\section{' + editor.getCopyText() + '}\n');
+    });
+    $('#subsection').click(function(e){
+      editor.insert('\\subsection{' + editor.getCopyText() + '}\n');
+    });
+    $('#subsubsection').click(function(e){
+      editor.insert('\\subsubsection{' + editor.getCopyText() + '}\n');
+    });
+    $('#itemize').click(function(e){
+      editor.insert('\\begin{itemize}\n  \\item' + editor.getCopyText() + '\n\\end{itemize}');
+    });
+    $('#enumerate').click(function(e){
+      editor.insert('\\begin{enumerate}\n  \\item' + editor.getCopyText() + '\n\\end{enumerate}');
+    });
+    $('#description').click(function(e){
+      editor.insert('\\begin{description}\n  \\item[]' + editor.getCopyText() + '\n\\end{description}');
+    });
+  </script>
+</body>
+</html>
