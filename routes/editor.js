@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
+const execSync = require('child_process').execSync;
 
 router.get('/', (req, res, next) => {
   res.render('editor', {title: 'Latex Editor'});
@@ -13,15 +14,24 @@ router.post('/', (req, res, next) => {
   //var arr = jsonData.split(/(?!\\\\newpage)(?=\\n)/);
   // \newpageの処理は保留
   for (var i = 0; i < arr.length; i++){
-    //console.log(arr[i]);
     arr[i] = arr[i].replace(/\\\\/g, '\\');
-    fs.appendFileSync('./texFile/sample.tex', arr[i] + '\n', function (err) {
+    fs.appendFileSync('sample.tex', arr[i] + '\n', function (err) {
       console.log(err);
     });
   }
+  // ディレクトリの作成 ＊今後使用する予定
   if (!fs.existsSync('./texFile')) {
     fs.mkdirSync('./texFile');
   }
+
+  //コンパイルの実行
+  //if(!fs.statSync('./sample.tex')){
+  execSync('platex sample.tex');
+  execSync('platex sample.tex');
+  execSync('dvipdfmx sample');
+  execSync('open sample.pdf');
+  //}
+
   res.send(jsonData);
 });
 
