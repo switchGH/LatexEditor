@@ -36,6 +36,13 @@
         <button id="description" class="btn btn-default">見出し付き</button>
       </ul>
     </div>
+    <div class="btn-group">
+        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">引用<span class="caret"></span></button>
+        <ul class="dropdown-menu" id="kajyo">
+          <button id="quote" class="btn btn-default">短文の引用</button>
+          <button id="quotation" class="btn btn-default">長文の引用</button>
+        </ul>
+      </div>
   </div>
   <div id="editor" style="height: 720px; width: 650px; margin-left: 10px;"></div>
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -100,6 +107,12 @@
     });
     $('#description').click(function(e){
       editor.insert('\\begin{description}\n  \\item[]' + editor.getCopyText() + '\n\\end{description}');
+    });
+    $('#quote').click(function(e){
+      editor.insert('\\begin{quote}\n' + editor.getCopyText() + '\\end{quote}');
+    });
+    $('#quotation').click(function(e){
+      editor.insert('\\begin{quotaiotn}\n' + editor.getCopyText() + '\\end{quotation}');
     });
   </script>
 </body>
