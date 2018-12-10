@@ -8,9 +8,6 @@
 <body>
   <h1><%= title %></h1>
   <dvi id="right-box" style="float: right; width: 700px; height: 750px; border: 1px dashed #333333; margin-right: 30px;">
-    <iframe src="localhost:3000/sampleDir/sample.pdf#page=1" width="100%" height="100%">
-      <p><b>表示されない時の表示</b>: <a href="../sampleDir/sample.pdf">PDF をダウンロード</a>.</p>
-    </iframe>
   </dvi>
   <div class="btn-group" style="margin-left: 10px;">
     <button id="save" class="btn btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
@@ -37,9 +34,18 @@
       </ul>
     </div>
     <div class="btn-group">
-      <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">図<span class="caret"></span></button>
+      <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">数式<span class="caret"></span></button>
       　<ul class="dropdown-menu" id="zu">
-          <button id="figure" class="btn btn-default">1枚挿入</button>
+          <button id="no_num" class="btn btn-default">数式番号なし</button>
+          <button id="equation" class="btn btn-default">数式番号あり</button>
+          <button id="frac" class="btn btn-default">分数</button>
+          <button id="array" class="btn btn-default">行列</button>
+        </ul>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">図<span class="caret"></span></button>
+        <ul class="dropdown-menu" id="susiki">
+            <button id="figure" class="btn btn-default">1枚挿入</button>
         </ul>
     </div>
     <div class="btn-group">
@@ -128,6 +134,28 @@
         '  \\label{ラベル}\n' +
         ' \\end{center}\n' +
         '\\end{quotation}');
+    });
+    $('#no_num').click(function(e){
+      editor.insert('\\[ ' + editor.getCopyText() + '\\]');
+    });
+    $('#equation').click(function(e){
+      editor.insert('\\begin{equation}\n' + editor.getCopyText() + '\\end{equation}');
+    });
+    $('#frac').click(function(e){
+      editor.insert('\\[\n' +
+      ' x = \\frac{a}{b}\n' + 
+      '\\]');
+    });
+    $('#array').click(function(e){
+      editor.insert('\\[\n' +
+      ' A = \\left(\n' + 
+      '  \\begin{array}{ccc}\n' +
+      '    a & b & c \\\\ \n' +
+      '    d & e & f \\\\ \n' +
+      '    g & h & i\n' +
+      '  \\end{array}\n' +
+      ' \\right)\n' +
+      '\\]');
     });
   </script>
 </body>
