@@ -37,11 +37,17 @@
       </ul>
     </div>
     <div class="btn-group">
-        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">引用<span class="caret"></span></button>
-        <ul class="dropdown-menu" id="kajyo">
-          <button id="quote" class="btn btn-default">短文の引用</button>
-          <button id="quotation" class="btn btn-default">長文の引用</button>
+      <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">図<span class="caret"></span></button>
+      　<ul class="dropdown-menu" id="zu">
+          <button id="figure" class="btn btn-default">1枚挿入</button>
         </ul>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">引用<span class="caret"></span></button>
+        　<ul class="dropdown-menu" id="inyo">
+            <button id="quote" class="btn btn-default">短文の引用</button>
+            <button id="quotation" class="btn btn-default">長文の引用</button>
+          </ul>
       </div>
   </div>
   <div id="editor" style="height: 720px; width: 650px; margin-left: 10px;"></div>
@@ -113,6 +119,15 @@
     });
     $('#quotation').click(function(e){
       editor.insert('\\begin{quotaiotn}\n' + editor.getCopyText() + '\\end{quotation}');
+    });
+    $('#figure').click(function(e){
+      editor.insert('\\begin{figure}\n' + 
+        ' \\begin{center}\n' +
+        '  \\includegraphics[オプション]{ファイル名}\n' +
+        '  \\caption{タイトル名}\n' +
+        '  \\label{ラベル}\n' +
+        ' \\end{center}\n' +
+        '\\end{quotation}');
     });
   </script>
 </body>
