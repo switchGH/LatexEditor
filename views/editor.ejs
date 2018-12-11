@@ -8,6 +8,17 @@
 <body>
   <h1><%= title %></h1>
   <dvi id="right-box" style="float: right; width: 700px; height: 750px; border: 1px dashed #333333; margin-right: 30px;">
+  <!--
+    <object data="pdf/sample.pdf" type="application/pdf" width="100%" height="100%">
+      <iframe src="pdf/sample.pdf" width="100%" height="100%">
+      <p><b>表示されない時の表示</b>: <a href="views/sample.pdf">PDF をダウンロード</a>.</p>
+      </iframe>
+  </object>
+  -->
+  <!--
+  <embed src="pdf/sample.pdf" type="application.pdf" width="100%" height="100%">
+  -->
+  <iframe src="pdf/sample.pdf" width="100%" height="100%"></iframe>
   </dvi>
   <div class="btn-group" style="margin-left: 10px;">
     <button id="save" class="btn btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
