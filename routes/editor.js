@@ -8,19 +8,6 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  //　ランダムな文字列を生成
-  // const line_num = 6;
-  // const char = 'abcdefghijklmnopqrstuvwxyz0123456789';
-  // const char_length = char.length;
-  // var random_name = '';
-
-  // for(var i = 0; i < line_num; i++){
-  //   random_name += char[Math.floor(Math.random()*char_length)];
-  // }
-
-  // let filename = random_name + '.tex';
-  // let dirname = random_name;
-
   let filename = 'sample';
   let dirname = 'sampleDir';
 
