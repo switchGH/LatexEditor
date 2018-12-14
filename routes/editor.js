@@ -52,8 +52,8 @@ router.post('/', (req, res, next) => {
   //platexコンパイルの実行
   try {
     console.log('texファイルをコンパイルします。');
-    execSync('platex ' + filename + '.tex').toString();
-    execSync('platex ' + filename + '.tex').toString();
+    execSync('platex ' + filename + '.tex -output-directory=' + dirname).toString();
+    execSync('platex ' + filename + '.tex -output-directory=' + dirname).toString();
     console.log('生成したファイルを' + dirname + '移動します');
     execSync('mv ' + filename + '.* ./' + dirname);
   } catch (error) {
@@ -62,22 +62,12 @@ router.post('/', (req, res, next) => {
 
   //dviodfmxファイルのコンパイル
   try {
-    fs.statSync(dirname + '/' + filename + '.dvi');
+    let filePath = dirname + '/' + filename;
+    let dviPath = filePath + '.dvi';
+    let pdfPath = filePath + '.pdf';
+    fs.statSync(dviPath);
     console.log('dviファイルは存在します。');
-    execSync('dvipdfmx ' + dirname + '/' + filename).toString();//dviファイル作成
-  } catch (error) {
-    if (error.code === 'ENOENT') {
-      console.log('dviファイルは存在しません。');
-    } else {
-      console.log(error);
-    }
-  }
-
-  //pdfの存在確認
-  try {
-    fs.statSync(filename + '.pdf');
-    console.log('pdfファイルは存在します。' + dirname + 'へ移動させます。');
-    execSync('mv ' + filename + '.pdf ./' + dirname);
+    execSync('dvipdfmx -o' + pdfPath + ' ' + dviPath).toString();//dviファイル作成
   } catch (error) {
     if (error.code === 'ENOENT') {
       console.log('dviファイルは存在しません。');

@@ -70,6 +70,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
   <script>
+    window.addEventListener('load', function(){
+      editor.setValue(localStorage.getItem('text'));
+    });
     var editor = ace.edit("editor");
     editor.$blockScrolling = Infinity;
     editor.setOptions({
@@ -78,12 +81,18 @@
     editor.setTheme("ace/theme/monokai");
     editor.getSession().setMode("ace/mode/html");
     $('#save').click(function(e) {
+      localStorage.setItem('text', editor.getValue());
       //alert(editor.getValue());
       $.ajax({
-        url: 'http://localhost:3000/editor',
+        url: '/editor',
         type: 'post',
         data: {'msg': editor.getValue()},
-        dataType: 'json'
+        //dataType: 'json'
+      }).done(function(data){
+        document.getElementsByTagName('iframe')[0].contentDocument.location.reload(true);
+      }).fail(function(xhr, textstatus, error){
+        alert('エラー発生');
+        console.log(textstatus + '\n' + error);
       });
     });
     $('#table-of-contents').click(function(e){
