@@ -1,87 +1,86 @@
-This is e-pTeX, Version 3.14159265-p3.7.1-161114-2.6 (utf8.euc) (TeX Live 2017) (preloaded format=platex 2017.11.12)  14 DEC 2018 16:09
+This is e-pTeX, Version 3.14159265-p3.8.1-180226-2.6 (utf8.euc) (TeX Live 2018) (preloaded format=platex 2018.12.14)  14 DEC 2018 08:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **sample.tex -output-directory=sampleDir
 (./sample.tex
-pLaTeX2e <2017/10/28>+2 (based on LaTeX2e <2017-04-15>)
-Babel <3.15> and hyphenation patterns for 84 language(s) loaded.
-(/usr/local/texlive/2017/texmf-dist/tex/platex/jsclasses/jsarticle.cls
-Document Class: jsarticle 2017/10/04 jsclasses (okumura, texjporg)
+pLaTeX2e <2018-12-01> (based on LaTeX2e <2018-12-01>)
+(/extVol/texlive/2018/texmf-dist/tex/platex/jsclasses/jsarticle.cls
+Document Class: jsarticle 2018/12/11 jsclasses (okumura, texjporg)
 \jsc@mpt=\dimen118
 \jsc@mmm=\dimen119
 \jsc@smallskipamount=\skip41
-LaTeX Info: Redefining \rmfamily on input line 471.
-LaTeX Info: Redefining \sffamily on input line 474.
-LaTeX Info: Redefining \ttfamily on input line 477.
-LaTeX Info: Redefining \textmc on input line 481.
-LaTeX Info: Redefining \textgt on input line 483.
+LaTeX Info: Redefining \rmfamily on input line 466.
+LaTeX Info: Redefining \sffamily on input line 469.
+LaTeX Info: Redefining \ttfamily on input line 472.
+LaTeX Info: Redefining \textmc on input line 476.
+LaTeX Info: Redefining \textgt on input line 478.
 \symmincho=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `mincho' in version `bold'
-(Font)                  JY1/mc/m/n --> JY1/gt/m/n on input line 545.
+(Font)                  JY1/mc/m/n --> JY1/gt/m/n on input line 540.
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 736.
+(Font)              scaled to size 9.60999pt on input line 731.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 736.
+(Font)              scaled to size 9.60999pt on input line 731.
 \fullwidth=\dimen120
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 7.68799pt on input line 889.
+(Font)              scaled to size 7.68799pt on input line 884.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 7.68799pt on input line 889.
-\c@part=\count82
-\c@section=\count83
-\c@subsection=\count84
-\c@subsubsection=\count85
-\c@paragraph=\count86
-\c@subparagraph=\count87
-\@abstractbox=\box42
-\c@figure=\count88
-\c@table=\count89
+(Font)              scaled to size 7.68799pt on input line 884.
+\c@part=\count83
+\c@section=\count84
+\c@subsection=\count85
+\c@subsubsection=\count86
+\c@paragraph=\count87
+\c@subparagraph=\count88
+\@abstractbox=\box43
+\c@figure=\count89
+\c@table=\count90
 \abovecaptionskip=\skip42
 \belowcaptionskip=\skip43
 \jsc@tocl@width=\dimen121
 \@lnumwidth=\dimen122
 \bibindent=\dimen123
-(/usr/local/texlive/2017/texmf-dist/tex/platex/jsclasses/jslogo.sty
+(/extVol/texlive/2018/texmf-dist/tex/platex/jsclasses/jslogo.sty
 Package: jslogo 2017/02/24 okumura, texjporg
 LaTeX Info: Redefining \TeX on input line 94.
 LaTeX Info: Redefining \LaTeX on input line 147.
 LaTeX Info: Redefining \LaTeXe on input line 200.
 )
-\heisei=\count90
+\heisei=\count91
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/graphicx.sty
+(/extVol/texlive/2018/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/keyval.sty
+(/extVol/texlive/2018/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks15
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/graphics.sty
+(/extVol/texlive/2018/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/trig.sty
+(/extVol/texlive/2018/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+(/extVol/texlive/2018/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: dvipdfmx.def on input line 99.
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-def/dvipdfmx.def
+(/extVol/texlive/2018/texmf-dist/tex/latex/graphics-def/dvipdfmx.def
 File: dvipdfmx.def 2017/06/24 v5.0g Graphics/color driver for dvipdfmx
 ))
 \Gin@req@height=\dimen124
 \Gin@req@width=\dimen125
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/here/here.sty)
-(/usr/local/texlive/2017/texmf-dist/tex/latex/float/float.sty
+(/extVol/texlive/2018/texmf-dist/tex/latex/here/here.sty)
+(/extVol/texlive/2018/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count91
+\c@float@type=\count92
 \float@exts=\toks16
-\float@box=\box43
+\float@box=\box44
 \@float@everytoks=\toks17
-\@floatcapt=\box44
+\@floatcapt=\box45
 ) (./sample.aux)
 \openout1 = `sample.aux'.
 
@@ -134,16 +133,23 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 \tf@toc=\write3
 \openout3 = `sample.toc'.
 
- [1
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 22.
+ (/extVol/texlive/2018/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 22.
+
+[1
 
 ] (./sample.aux) ) 
 Here is how much of TeX's memory you used:
- 903 strings out of 493642
- 10893 string characters out of 6148747
- 70094 words of memory out of 5000000
- 4537 multiletter control sequences out of 15000+600000
+ 916 strings out of 493226
+ 11086 string characters out of 6145222
+ 77187 words of memory out of 5000000
+ 4934 multiletter control sequences out of 15000+600000
  13515 words of font info for 59 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 25i,7n,21p,240b,231s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 25i,6n,21p,240b,226s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on sample.dvi (1 page, 676 bytes).
+Output written on sample.dvi (1 page, 788 bytes).
