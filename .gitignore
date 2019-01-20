@@ -4,3 +4,6 @@
 # ignore db setting file
 model/mysqlConnection.js
 
+# ignore latex file
+sampleDir/*
+
