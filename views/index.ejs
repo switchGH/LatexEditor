@@ -7,5 +7,8 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+  <% if (typeof user !== 'undefined') { %>
+      <span class="login-user"><%= user.user_name %>さんとしてログインしています</span>
+  <% } %>
   </body>
 </html>

@@ -1,14 +1,15 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const editorRouter = require('./routes/editor');//editor機能
 const pdfRouter = require('./routes/pdf');//pdf表示機能
 const registerRouter = require('./routes/register');//新規登録機能
+//const setUser = require('./model/setUser');//ユーザー名をトップページに表示させる機能
 
 
 var app = express();
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//app.use('/', setUser, indexRouter);//indexに入る前にsetUserを挟む
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/editor', editorRouter);
