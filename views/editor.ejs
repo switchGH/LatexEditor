@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <title><%= title %></title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.min.css"/>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/default.min.css"/>
 </head>
 <body>
   <h1><%= title %></h1>
@@ -90,8 +93,9 @@
         //dataType: 'json'
       }).done(function(data){
         document.getElementsByTagName('iframe')[0].contentDocument.location.reload(true);
+        alertify.success('保存しました！');
       }).fail(function(xhr, textstatus, error){
-        alert('エラー発生');
+        alertify.error('保存できませんでした...');
         console.log(textstatus + '\n' + error);
       });
     });
