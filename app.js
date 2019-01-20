@@ -4,10 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var editorRouter = require('./routes/editor');
-var pdfRouter = require('./routes/pdf');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const editorRouter = require('./routes/editor');//editor機能
+const pdfRouter = require('./routes/pdf');//pdf表示機能
+const registerRouter = require('./routes/register');//新規登録機能
+
 
 var app = express();
 
@@ -25,6 +27,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/editor', editorRouter);
 app.use('/pdf', pdfRouter);
+app.use('/register', registerRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
