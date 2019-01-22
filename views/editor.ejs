@@ -10,6 +10,7 @@
 </head>
 <body>
   <h1><%= title %></h1>
+  <% layout('layout') %>
   <dvi id="right-box" style="float: right; width: 700px; height: 750px; border: 1px dashed #333333; margin-right: 30px;">
   <iframe src="pdf/sample.pdf" width="100%" height="100%"></iframe>
   </dvi>
@@ -189,5 +190,10 @@
       editor.insert('\\textcolor{blue}{' + editor.getCopyText() + '}');
     });
   </script>
+  <% if (typeof user !== 'undefined') { %>
+    <span class="login-user"><%= user.user_name %>さんとしてログインしています</span>
+  <% }else{ %>
+    <span class="not-login-user">あなたはログインしていません</span>
+  <% } %>
 </body>
 </html>

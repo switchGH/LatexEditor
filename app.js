@@ -11,7 +11,7 @@ const editorRouter = require('./routes/editor');//editor機能
 const pdfRouter = require('./routes/pdf');//pdf表示機能
 const registerRouter = require('./routes/register');//新規登録機能
 const loginRouter = require('./routes/login');//ログイン画面
-//const setUser = require('./model/setUser');//ユーザー名をトップページに表示させる機能
+const setUser = require('./model/setUser');//ユーザー名をトップページに表示させる機能
 const logoutRouter = require('./routes/logout');//ログアウト画面
 
 
@@ -39,7 +39,7 @@ app.use(session({
 //app.use('/', setUser, indexRouter);//indexに入る前にsetUserを挟む
 app.use('/login', loginRouter);
 app.use('/users', usersRouter);
-app.use('/editor', editorRouter);
+app.use('/editor', setUser, editorRouter);
 app.use('/pdf', pdfRouter);
 app.use('/register', registerRouter);
 app.use('/logout', logoutRouter);
