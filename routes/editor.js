@@ -4,7 +4,11 @@ const fs = require('fs');
 const execSync = require('child_process').execSync;
 
 router.get('/', (req, res, next) => {
-  res.render('editor', {title: 'Latex Editor'});
+  if(req.session.user_id){
+    res.render('editor', {title: 'Latex Editor'});
+  }else{
+    res.redirect('/login');
+  }
 });
 
 router.post('/', (req, res, next) => {
