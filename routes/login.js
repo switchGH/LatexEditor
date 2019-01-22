@@ -5,7 +5,7 @@ const connection = require('../model/mysqlConnection');
 router.get('/', function(req, res, next) {
   if (req.session.user_id) {
     console.log(req.session.user_id);
-    res.redirect('/');
+    res.redirect('/editor');
   } else {
     res.render('login', {
       title: 'ログイン'
