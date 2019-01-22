@@ -3,12 +3,14 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const session = require('express-session');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const editorRouter = require('./routes/editor');//editor機能
 const pdfRouter = require('./routes/pdf');//pdf表示機能
 const registerRouter = require('./routes/register');//新規登録機能
+const loginRouter = require('./routes/login');//ログイン画面
 //const setUser = require('./model/setUser');//ユーザー名をトップページに表示させる機能
 
 
@@ -23,6 +25,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'keyboard cat', //Cookieの暗号化に利用するキー
+  resave: false, //trueならばセッションチェックする領域にリクエストするたびにセッションを作り直す
+  saveUninitialized: true, //未初期化状態のセッションも保存されるようになる(名無しユーザー)
+  // cookie: {
+  //   maxAge: 30 * 60 * 1000
+  // }
+}));
 
 //app.use('/', setUser, indexRouter);//indexに入る前にsetUserを挟む
 app.use('/', indexRouter);
@@ -30,6 +40,7 @@ app.use('/users', usersRouter);
 app.use('/editor', editorRouter);
 app.use('/pdf', pdfRouter);
 app.use('/register', registerRouter);
+app.use('/login', loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

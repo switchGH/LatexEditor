@@ -19,7 +19,7 @@ router.post('/', function(req, res, next){
                       + userName + '", ' + '"' + email + '", ' + '"' + password + '", ' + '"' + createdAt + '")';//ユーザー情報
 
   connection.query(emailExitsQuery, function(err, email) {
-    console.log(email);
+    //console.log(email);
     let emailExits = email.length;
     if(emailExits){
       res.render('register', {
@@ -29,7 +29,7 @@ router.post('/', function(req, res, next){
     }else{
       //同じメールアドレスが存在しない場合
       connection.query(registerQuery, function(err, rows){
-        console.log(rows);
+        //console.log(rows);
         res.redirect('/login');
       });
     }
