@@ -6,3 +6,80 @@ body {
 a {
   color: #00B7FF;
 }
+
+/* .wrapper {
+    padding: 30px 200px 37px;
+} */
+
+.post-form {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.label {
+  width: 100px;
+  font-weight: bold;
+}
+
+.input {
+    display: inline-block;
+    padding: 10px;
+    font-size: 16px;
+    vertical-align: middle;
+    border: 3px #ccc solid;
+    background-color: #fff;
+}
+
+.login-title {
+    margin-bottom: 30px;
+    margin-top: 30px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: solid 3px black;
+}
+
+.login-btn {
+    display: inline-block;
+    padding: 0.5em 1em;
+    font-size: 15px;
+    text-decoration: none;
+    background: #668ad8;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px #627295;
+    border-radius: 3px;
+}
+.login-btn:active {
+    -ms-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+}
+
+.register-title{
+    margin-bottom: 30px;
+    margin-top: 30px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: solid 3px black;
+}
+
+.register-btn {
+    display: inline-block;
+    padding: 0.5em 1em;
+    font-size: 15px;
+    text-decoration: none;
+    background: #668ad8;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px #627295;
+    border-radius: 3px;
+}
+
+.register-btn:active {
+    -ms-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+}
+
