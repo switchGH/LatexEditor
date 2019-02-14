@@ -2,7 +2,7 @@
 *node_modules/
 
 # ignore db setting file
-model/mysqlConnection.js
+# model/mysqlConnection.js
 
 # ignore latex file
 sampleDir/*
