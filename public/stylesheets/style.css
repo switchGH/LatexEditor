@@ -1,11 +1,11 @@
-body {
+/* body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
-}
+} */
 
 /* .wrapper {
     padding: 30px 200px 37px;
@@ -82,4 +82,3 @@ a {
     transform: translateY(4px);/*下に動く*/
     border-bottom: none;/*線を消す*/
 }
-

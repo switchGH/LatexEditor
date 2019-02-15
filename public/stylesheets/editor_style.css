@@ -1,0 +1,10 @@
+/* ログインユーザーを表示 */
+.login-user {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 5px;
+  font-size: 12px;
+  border: double 5px #4ec4d3;
+  background-color: rgb(172, 216, 236);
+}

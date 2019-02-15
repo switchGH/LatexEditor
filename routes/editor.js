@@ -1,14 +1,22 @@
 const express = require('express');
 const router = express.Router();
+const moment = require('moment');
+const connection = require('../model/mysqlConnection');
 const fs = require('fs');
 const execSync = require('child_process').execSync;
 
 router.get('/', (req, res, next) => {
-  if(req.session.user_id){
-    res.render('editor', {title: 'Latex Editor'});
-  }else{
-    res.redirect('/login');
-  }
+  let query = 'SELECT user_id, user_name, DATE_FORMAT(created_at, \'%Y年%m月%d日 %k時%i分%s秒\') AS created_at FROM users';
+  connection.query(query, function(err, rows){
+    console.log(rows);//データを確認
+    if(req.session.user_id){
+      res.render('editor', {
+        title: 'Latex Editor'
+      });
+    }else{
+      res.redirect('/login');
+    }
+  });
 });
 
 router.post('/', (req, res, next) => {
