@@ -7,12 +7,14 @@ const connection = require('../model/mysqlConnection');
 
 router.get('/:user_id', function(req, res, next){
   let userId = req.session.user_id;
+  console.log('userId: ' + userId);
   let getUsersQuery = 'SELECT * FROM users WHERE user_id = ' + userId;// user_idを基にデータ取得
-  let getWorkspacesQuery = 'SELECT W.workspace_id, W.workspace_name, U.user_name, DATE_FORMAT(W.created_at, \'%Y年%m月%d日 %k時%i分%s秒\') AS created_at FROM workspaces W LEFT OUTER JOIN users U ON W.user_id = U.user_id';
-
+  //let getWorkspacesQuery = 'SELECT W.workspace_id, W.workspace_name, W.user_id, DATE_FORMAT(W.created_at, \'%Y年%m月%d日 %k時%i分%s秒\') AS created_at FROM workspaces W LEFT OUTER JOIN users U ON W.user_id = U.user_id ORDER BY W.created_at DESC';
+  let getWorkspacesQuery = 'SELECT workspace_id, workspace_name, user_id, DATE_FORMAT(created_at, \'%Y年%m月%d日 %k時%i分%s秒\') AS created_at FROM workspaces WHERE user_id = ' + userId;
   if(req.params.user_id == userId){
     connection.query(getUsersQuery, function(err, users){
       connection.query(getWorkspacesQuery, function(err, workspaces){
+        console.log('workspaces: ' + workspaces[0]);
         res.render('workspace', {
           title: users[0].user_name,
           user: users[0],
@@ -52,7 +54,7 @@ createWorkspace = function(userId, workspaceName){
       execSync('mkdir ' + path + userId);
       console.log(userId + 'ディレクトリを作成しました');
     }
-    execSync('mkdir ./all_user_dir/' + userId);//ユーザーの親ディレクトリ作成
+    //execSync('mkdir ./all_user_dir/' + userId);//ユーザーの親ディレクトリ作成
   }
   // ワークスペースを作成
   try {

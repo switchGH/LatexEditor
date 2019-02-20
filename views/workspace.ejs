@@ -13,6 +13,7 @@
     <% layout('layout') %>
     <% if(workspaceList.length) { %>
       <% workspaceList.forEach(function(workspaceItem) { %>
+        <% console.log(workspaceItem) %>
         <a href="/editor/<%= user.user_id %>/<%= workspaceItem.workspace_id %>" class="workspace__name">
           <li class="box">
           <%= workspaceItem.workspace_name %>
