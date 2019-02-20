@@ -1,0 +1,14 @@
+a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn {
+  display: inline-block;
+  padding: 5px;
+  margin: 10px 0 0 10px;
+  border: 2px rgb(49, 47, 47) solid;
+  border-radius: 5px;
+  background-color: rgb(174, 215, 243);
+}

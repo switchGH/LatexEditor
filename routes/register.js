@@ -17,7 +17,6 @@ router.post('/', function(req, res, next){
   let emailExitsQuery = 'SELECT * FROM users WHERE email = "' + email + '" LIMIT 1';//emailがあれば取得
   let registerQuery = 'INSERT INTO users (user_name, email, password, created_at) VALUES ("' 
                       + userName + '", ' + '"' + email + '", ' + '"' + password + '", ' + '"' + createdAt + '")';//ユーザー情報
-
   connection.query(emailExitsQuery, function(err, email) {
     //console.log(email);
     let emailExits = email.length;

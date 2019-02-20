@@ -7,3 +7,6 @@
 # ignore latex file
 sampleDir/*
 
+# ignore generate file
+all_user_dir/*
+

@@ -1,0 +1,26 @@
+/* ログインユーザーを表示 */
+.login-user {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 5px;
+  font-size: 12px;
+  border: double 5px #4ec4d3;
+  background-color: rgb(172, 216, 236);
+}
+
+h1 {
+  color: #364e96;/*文字色*/
+  padding: 0.5em 0;/*上下の余白*/
+  border-top: solid 3px #364e96;/*上線*/
+  border-bottom: solid 3px #364e96;/*下線*/
+  text-align: center;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1500px;
+  min-width: 100px;
+  margin: 0 auto;
+  line-height: 1.7;
+}

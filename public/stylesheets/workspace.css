@@ -1,0 +1,65 @@
+.wrapper {
+  width: 100%;
+  max-width: 800px;
+  min-width: 300px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+h1 {
+  text-align: center;
+  background-color:#a2c1e9;
+}
+
+.box {
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  font-weight: bold;
+  color: #6091d3;/*文字色*/
+  background: #FFF;
+  border: solid 3px #6091d3;/*線*/
+  border-radius: 10px;/*角の丸み*/
+}
+.box p {
+  margin: 0; 
+  padding: 0;
+}
+
+.workspace-form {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.workspace-date {
+  color: black;
+  text-align: right;
+}
+.create-btn {
+  display: inline-block;
+  padding: 0.5em 1em;
+  font-size: 15px;
+  text-decoration: none;
+  background: #668ad8;/*ボタン色*/
+  color: #FFF;
+  border-bottom: solid 4px #627295;
+  border-radius: 3px;
+}
+
+.input {
+  display: inline-block;
+  padding: 10px;
+  font-size: 16px;
+  vertical-align: middle;
+  border: 3px #ccc solid;
+  background-color: #fff;
+}
+
+.login-user {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 5px;
+  font-size: 12px;
+  border: double 5px #4ec4d3;
+  background-color: rgb(172, 216, 236);
+}
