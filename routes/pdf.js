@@ -7,13 +7,14 @@ const pdfDir = 'all_user_dir/';
 /* GET users listing. */
 router.get('/:user_id/:workspace_name/:fname', function(req, res, next){
   let fname = req.params.user_id + '/' + req.params.workspace_name + '/' + req.params.fname;
-  console.log('fname: ' + fname);
   let pdfPath = pdfDir + fname;
-  console.log('pdfPath: ' + pdfPath);
-  res.setHeader('Content-Type', 'application/pdf');
-  fs.readFile(pdfPath, function(err, data) {
-    res.send(data);
-  });
+  /* 他のユーザーには見れないように */
+  if(req.session.user_id == req.params.user_id){
+    res.setHeader('Content-Type', 'application/pdf');
+    fs.readFile(pdfPath, function(err, data) {
+      res.send(data);
+    });
+  }
 });
 
 module.exports = router;
