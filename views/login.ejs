@@ -10,7 +10,7 @@
   <body>
     <div class="wrapper">
       <% layout('layout') %>
-      <p class="login-title"><%= title %></p>
+      <h1 class="login-title"><%= title %></h1>
       <form action="/login" method="post" class="post-form">
         <span class="label">Eメール：</span><input type="email" name="email" class="input" required><br>
         <br>
@@ -19,9 +19,8 @@
         <button type="submit" class="login-btn">ログイン</button>
     </form>
     <% if (typeof noUser !== 'undefined') { %>
-        <p class="error"><%= noUser %></p>
+      <p class="error"><%= noUser %></p>
     <% } %>
-    <!-- <a href="/" class="btn">トップへもどる</a> -->
     </div>
   </body>
 </html>

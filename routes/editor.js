@@ -7,10 +7,10 @@ const execSync = require('child_process').execSync;
 router.get('/:user_id/:workspace_id', function(req, res, next){
   let workspaceId = req.params.workspace_id;
   let userId = req.session.user_id;
-  let getUWorkspacesQuery = 'SELECT * FROM workspaces WHERE workspace_id = ' + workspaceId + ' AND user_id =' + userId;
+  let getWorkspacesQuery = 'SELECT * FROM workspaces WHERE workspace_id = ' + workspaceId + ' AND user_id =' + userId;
 
   if(userId == req.params.user_id){
-    connection.query(getUWorkspacesQuery, function(err, workspaces){
+    connection.query(getWorkspacesQuery, function(err, workspaces){
       let texFile = 'all_user_dir/' + workspaces[0].user_id + '/' + workspaces[0].workspace_name + '/' + workspaces[0].workspace_name + '.tex';// 作成するTexファイル
       console.log('作成するTexファイル：' + texFile);
       /* Texファイルの存在確認 */
@@ -27,10 +27,9 @@ router.get('/:user_id/:workspace_id', function(req, res, next){
         }
       }
 
-      let data = fs.readFileSync(texFile).toString();// texファイルの内容をdata変数に格納
-      console.log('処理前： ' + data);
-      let textData = data.replace(new RegExp(/\\/g), '\\\\');//　「\」を「\\」に置換し、editor(クライアント)に表示する
-      console.log('処理後： ' + data);
+      let textData = fs.readFileSync(texFile).toString();// texファイルの内容をdata変数に格納
+      console.log(textData);
+      textData = textData.replace(new RegExp(/\\/g), '\\\\');//　「\」を「\\」に置換し、editor(クライアント)に表示する
       res.render('editor', {
         title: 'Latex Editor',
         workspace: workspaces[0],
@@ -44,73 +43,74 @@ router.get('/:user_id/:workspace_id', function(req, res, next){
 
 router.post('/:user_id/:worksapce_id', function(req, res, next){
   let workspaceName = req.body.workspace_name;// ワークスペース名
-  let filename = workspaceName;
-  let dirname = 'all_user_dir/' + req.session.user_id  + '/' + workspaceName;
+  let fileName = workspaceName;
+  let dirPath = 'all_user_dir/' + req.session.user_id  + '/' + workspaceName;
 
   jsonData = JSON.stringify(req.body.msg).slice(1, -1);
-  console.log('jsonData ' + jsonData);
   //jsonを受け取り、文頭・文末の「"」を削除する
-  var arr = jsonData.split(/\\n/);
+  let arr = jsonData.split(/\\n/);
   //var arr = jsonData.split(/(?!\\\\newpage)(?=\\n)/);
   // \newpageの処理は保留
+
+  /* ファイルを白紙にする */
+  fs.writeFileSync(dirPath + '/' + fileName + '.tex', '', function(err){
+    if(err){
+      console.log('エラー発生 ' + err);
+      throw err;
+    }else{
+      console.log('ファイルの白紙に成功');
+    }
+  });
+
+  /* ファイルを更新する */
   for (var i = 0; i < arr.length; i++){
     arr[i] = arr[i].replace(/\\\\/g, '\\');
     //指定のディレクトリにtexファイル生成
-    fs.appendFileSync(dirname + '/' + filename + '.tex', arr[i] + '\n', function (err) {
+    fs.appendFileSync(dirPath + '/' + fileName + '.tex', arr[i] + '\n', function (err) {
       console.log(err);
     });
   }
-  createTexFile(dirname, filename);//Texフアイルを作成
+  createTexFile(dirPath, fileName);//Texフアイルを作成
   res.send(jsonData);
 });
 
 // Texファイル作成メソッド
-createTexFile = function(dirname , filename){
+createTexFile = function(dirPath , fileName){
   // ディレクトリの存在を確認 ＊今後使用する予定
   try {
-    fs.statSync(dirname);
+    fs.statSync(dirPath);
     console.log('ディレクトリは存在します。');
   } catch (error) {
     if (error.code === 'ENOENT') {
       console.log('ディレクトリは存在しません。');
-      fs.mkdirSync(dirname);// ディレクトリ作成
-      console.log(dirname + 'を作成しました。');
+      fs.mkdirSync(dirPath);// ディレクトリ作成
+      console.log(dirPath + 'を作成しました。');
     } else {
       console.log(error);
     }
   }
 
-  //texファイルの存在を確認
-  // try {
-  //   fs.statSync(filename + '.tex');
-  //   console.log('texは存在します。');
-  // } catch (error) {
-  //   if (error.code === 'ENOENT') {
-  //     console.log('texファイルは存在しません。');
-  //   } else {
-  //     console.log(error);
-  //   }
-  // }
-
   //platexコンパイルの実行
   try {
     console.log('texファイルをコンパイルします。');
-    // execSync('platex ' + filename + '.tex -output-directory=' + dirname).toString();
-    // execSync('platex ' + filename + '.tex -output-directory=' + dirname).toString();
-
-    let texFile = dirname + '/' + filename  + '.tex';
-    execSync('platex ' + texFile + ' -output-directory=' + dirname).toString();
-    execSync('platex ' + texFile + ' -output-directory=' + dirname).toString();
-
-    //console.log('生成したファイルを' + dirname + '移動します');
-    execSync('mv ' + filename + '.* ./' + dirname);
+    let texFile = dirPath + '/' + fileName  + '.tex';
+    execSync('platex ' + texFile + ' -output-directory=' + dirPath).toString();
+    execSync('platex ' + texFile + ' -output-directory=' + dirPath).toString();
+    //console.log('生成したファイルを' + dirPath + '移動します');
+    //execSync('mv ' + fileName + '.* ./' + dirPath);// 変更すべき箇所
+    /* .aux, .dvi, .log, .tex, .toc ファイルをワークスペースディレクトリに移動させる*/
+    execSync('mv ' + fileName + '.aux ./' + dirPath);
+    execSync('mv ' + fileName + '.dvi ./' + dirPath);
+    execSync('mv ' + fileName + '.log ./' + dirPath);
+    execSync('mv ' + fileName + '.toc ./' + dirPath);
+    //execSync('mv ' + fileName + '.tex ./' + dirPath);
   } catch (error) {
     console.log(error);
   }
 
   //dviodfmxファイルのコンパイル
   try {
-    let filePath = dirname + '/' + filename;
+    let filePath = dirPath + '/' + fileName;
     let dviPath = filePath + '.dvi';
     let pdfPath = filePath + '.pdf';
     fs.statSync(dviPath);
