@@ -7,16 +7,13 @@ const connection = require('../model/mysqlConnection');
 
 router.get('/:user_id', function(req, res, next){
   let userId = req.session.user_id;
-  console.log('userId: ' + userId);
   let getUsersQuery = 'SELECT * FROM users WHERE user_id = ' + userId;// user_idを基にデータ取得
-  //let getWorkspacesQuery = 'SELECT W.workspace_id, W.workspace_name, W.user_id, DATE_FORMAT(W.created_at, \'%Y年%m月%d日 %k時%i分%s秒\') AS created_at FROM workspaces W LEFT OUTER JOIN users U ON W.user_id = U.user_id ORDER BY W.created_at DESC';
   let getWorkspacesQuery = 'SELECT workspace_id, workspace_name, user_id, DATE_FORMAT(created_at, \'%Y年%m月%d日 %k時%i分%s秒\') AS created_at FROM workspaces WHERE user_id = ' + userId;
   if(req.params.user_id == userId){
     connection.query(getUsersQuery, function(err, users){
       connection.query(getWorkspacesQuery, function(err, workspaces){
-        console.log('workspaces: ' + workspaces[0]);
+        //console.log('workspaces: ' + workspaces[0]);
         res.render('workspace', {
-          title: users[0].user_name,
           user: users[0],
           workspaceList: workspaces
         });
@@ -41,32 +38,32 @@ router.post('/:user_id', function(req, res){
   });
 });
 
-//ワークスペースディレクトリ作成
+/* ワークスペースディレクトリ作成 */
 createWorkspace = function(userId, workspaceName){
-  let path = 'all_user_dir/';
-  // ユーザーディレクトリ作成
+  let userDirPath = 'all_user_dir/' + userId;
+  /* ユーザーディレクトリ作成 */
   try{
-    fs.statSync(path + userId);
+    fs.statSync(userDirPath);
     console.log('ユーザーディレクトリは存在します');
   }catch(e){
     if(e.code == 'ENOENT'){
       console.log('ユーザーディレクトリが存在しません');
-      execSync('mkdir ' + path + userId);
-      console.log(userId + 'ディレクトリを作成しました');
+      execSync('mkdir ' + userDirPath);
+      console.log(userDirPath + 'ディレクトリを作成しました');
     }
-    //execSync('mkdir ./all_user_dir/' + userId);//ユーザーの親ディレクトリ作成
   }
-  // ワークスペースを作成
+  /* ワークスペースを作成 */
+  let workspaceDirPath = userDirPath + '/' + workspaceName;
   try {
     //同じワークスペース作成済みの場合
-    fs.statSync(path + userId + '/' + workspaceName);
+    fs.statSync(workspaceDirPath);
     console.log(workspaceName + 'は存在します');
   }catch(e){
     //ワークスペースが存在しない
     if(e.code === 'ENOENT'){
       console.log(workspaceName + 'は存在しません');
-      execSync('mkdir ./all_user_dir/'+ userId + '/' + workspaceName).toString();
-      console.log(workspaceName + 'を作成しました');
+      execSync('mkdir ' + workspaceDirPath).toString();
+      console.log(workspaceDirPath + 'を作成しました');
     }else {
       console.log(e);
     }

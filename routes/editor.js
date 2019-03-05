@@ -12,7 +12,7 @@ router.get('/:user_id/:workspace_id', function(req, res, next){
   if(userId == req.params.user_id){
     connection.query(getWorkspacesQuery, function(err, workspaces){
       let texFile = 'all_user_dir/' + workspaces[0].user_id + '/' + workspaces[0].workspace_name + '/' + workspaces[0].workspace_name + '.tex';// 作成するTexファイル
-      console.log('作成するTexファイル：' + texFile);
+      //console.log('作成するTexファイル：' + texFile);
       /* Texファイルの存在確認 */
       try {
         fs.statSync(texFile);
@@ -28,10 +28,8 @@ router.get('/:user_id/:workspace_id', function(req, res, next){
       }
 
       let textData = fs.readFileSync(texFile).toString();// texファイルの内容をdata変数に格納
-      console.log(textData);
       textData = textData.replace(new RegExp(/\\/g), '\\\\');//　「\」を「\\」に置換し、editor(クライアント)に表示する
       res.render('editor', {
-        title: 'Latex Editor',
         workspace: workspaces[0],
         text: textData
       });
@@ -96,8 +94,7 @@ createTexFile = function(dirPath , fileName){
     let texFile = dirPath + '/' + fileName  + '.tex';
     execSync('platex ' + texFile + ' -output-directory=' + dirPath).toString();
     execSync('platex ' + texFile + ' -output-directory=' + dirPath).toString();
-    //console.log('生成したファイルを' + dirPath + '移動します');
-    //execSync('mv ' + fileName + '.* ./' + dirPath);// 変更すべき箇所
+
     /* .aux, .dvi, .log, .tex, .toc ファイルをワークスペースディレクトリに移動させる*/
     execSync('mv ' + fileName + '.aux ./' + dirPath);
     execSync('mv ' + fileName + '.dvi ./' + dirPath);

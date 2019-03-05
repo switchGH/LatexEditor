@@ -1,4 +1,4 @@
 {
-  "name": "app",
-  "script": "./bin/www",
+  "name": "latexeditor",
+  "script": "./bin/www"
 }

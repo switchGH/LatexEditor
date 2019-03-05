@@ -16,8 +16,8 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   let email = req.body.email;
   let password = req.body.password;
-  let query = 'SELECT user_id FROM users WHERE email = "' + email + '" AND password = "' + password + '" LIMIT 1';
   //emailとpasswordが一致しているユーザーを一件だけ返す
+  let query = 'SELECT user_id FROM users WHERE email = "' + email + '" AND password = "' + password + '" LIMIT 1';
   connection.query(query, function(err, rows) {
     //ユーザーのデータが返ってきた場合のみuser_idを代入する
     let userId = rows.length? rows[0].user_id: false;
