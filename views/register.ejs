@@ -8,9 +8,10 @@
 <link rel='stylesheet' href='/stylesheets/register.css'>
 </head>
 <body>
+<h1>LatexEditorへようこそ！</h1>
 <div class="wrapper">
     <% layout('layout') %>
-    <h1 class="register-title"><%= title %></h1>
+    <h2 class="register-title"><%= title %></h2>
     <form action="/register" method="post" class="register-form">
         <span class="label">ユーザー名：</span><input type="text" name="user_name" class="input" required><br>
         <br>

@@ -8,9 +8,10 @@
     <link rel='stylesheet' href='/stylesheets/login.css'>
     </head>
   <body>
+    <h1>LatexEditorへようこそ！</h1>
     <div class="wrapper">
       <% layout('layout') %>
-      <h1 class="login-title"><%= title %></h1>
+      <h2 class="login-title"><%= title %></h2>
       <form action="/login" method="post" class="post-form">
         <span class="label">Eメール：</span><input type="email" name="email" class="input" required><br>
         <br>
